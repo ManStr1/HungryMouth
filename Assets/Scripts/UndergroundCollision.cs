@@ -9,13 +9,13 @@ public class UndergroundCollision : MonoBehaviour {
             string tag = other.tag;
 
             if (tag.Equals("Food")) {
-                Level.Instance.objectsInScene--;
-                UIManager.Instance.UpdateLevelProgress();
+                LevelGameplay.Instance.objectsInScene--;
+                UIManagerInGame.Instance.UpdateLevelProgress();
                 Destroy(other.gameObject);
 
-                if (Level.Instance.objectsInScene == 0) {
-                    UIManager.Instance.ShowLevelCompletedUI();
-                    Level.Instance.PlayWinFx();
+                if (LevelGameplay.Instance.objectsInScene == 0) {
+                    UIManagerInGame.Instance.ShowLevelCompletedUI();
+                    LevelGameplay.Instance.PlayWinFx();
                     Invoke("NextLevel", 2f);
                 }
             }
@@ -23,7 +23,7 @@ public class UndergroundCollision : MonoBehaviour {
                 Game.isGameOver = true;
                 Camera.main.transform.DOShakePosition(1f, 0.2f, 20, 90f).
                     OnComplete(() => {
-                        Level.Instance.RestartLevel();
+                        LevelGameplay.Instance.RestartLevel();
                     });
                 
             }
@@ -31,6 +31,6 @@ public class UndergroundCollision : MonoBehaviour {
     }
 
     void NextLevel() {
-        Level.Instance.LoadNextLevel();
+        LevelGameplay.Instance.LoadNextLevel();
     }
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Level : MonoBehaviour {
-    public static Level Instance;
+public class LevelGameplay : MonoBehaviour {
+    // Сам уровень
+    public static LevelGameplay Instance;
 
     private void Awake() {
         if (Instance == null) {
@@ -47,8 +48,16 @@ public class Level : MonoBehaviour {
         winFx.Play();
     }
 
+    // Разблокирование следующего уровня
     public void LoadNextLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // Текущий уровень под 1 индексом, но по сути он 0, значит нужно вызвать для 1 (на самом деле 2 ур разблокирование)
+        if (SceneManager.GetActiveScene().buildIndex < LevelBarMenu.Instance.activatedLevels.Length) {
+            LevelBarMenu.Instance.activatedLevels[SceneManager.GetActiveScene().buildIndex] = true;
+            SaveSystem.SaveLevel(LevelBarMenu.Instance);
+        }
+        
+        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void RestartLevel() {

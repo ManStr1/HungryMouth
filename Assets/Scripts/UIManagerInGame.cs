@@ -4,9 +4,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
-public class UIManager : MonoBehaviour {
-    public static UIManager Instance;
-    float speed = 5f;
+public class UIManagerInGame : MonoBehaviour {
+    public static UIManagerInGame Instance;
 
     private void Awake() {
         if (Instance == null) {
@@ -29,12 +28,12 @@ public class UIManager : MonoBehaviour {
 
     void SetLevelProgressText() {
         int level = SceneManager.GetActiveScene().buildIndex + sceneOffset;
-        nextLevelText.text = (level + 1).ToString();
+        nextLevelText.text = (level).ToString();
     }
 
     // Update is called once per frame
     public void UpdateLevelProgress() {
-        float val = 1f - ((float)Level.Instance.objectsInScene / Level.Instance.totalObjects);
+        float val = 1f - ((float)LevelGameplay.Instance.objectsInScene / LevelGameplay.Instance.totalObjects);
         progressFillImage.DOFillAmount(val, 0.4f);
     }   
 
