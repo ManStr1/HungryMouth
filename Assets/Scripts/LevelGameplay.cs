@@ -17,6 +17,7 @@ public class LevelGameplay : MonoBehaviour {
 
     public int objectsInScene;
     public int totalObjects;
+    public SpriteRenderer holeSkin;
 
     [SerializeField] ParticleSystem winFx;
     [SerializeField] Transform objectParent;
@@ -34,6 +35,7 @@ public class LevelGameplay : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        holeSkin.sprite = LevelBarMenu.Instance.skins[LevelBarMenu.Instance.indexOfActiveSkin];
         CountObjects();
         UpdateLevelColors();
     }

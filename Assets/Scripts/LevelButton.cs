@@ -27,4 +27,13 @@ public class LevelButton : MonoBehaviour {
         Application.Quit();
     }
 
+    public void SetSkin() {
+        string skin = name.Substring(name.IndexOf(' '), name.Length - name.IndexOf(' '));
+        int l = int.Parse(skin);
+
+        if (LevelBarMenu.Instance.activatedSkins[l - 1] == true) {
+            LevelBarMenu.Instance.indexOfActiveSkin = l - 1;
+            SaveSystem.SaveLevel(LevelBarMenu.Instance);
+        }
+    }
 }
