@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2309260071412615981}
   - component: {fileID: 2309260071412615986}
   - component: {fileID: 2309260071412615980}
-  - component: {fileID: -8479171365483156628}
+  - component: {fileID: 5131628086397219554}
   m_Layer: 0
   m_Name: skinNActivatedButton
   m_TagString: Untagged
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8479171365483156628}
+      - m_Target: {fileID: 5131628086397219554}
         m_MethodName: SetSkin
         m_Mode: 1
         m_Arguments:
@@ -102,7 +102,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-8479171365483156628
+      - m_Target: {fileID: 5131628086397219554}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5131628086397219554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

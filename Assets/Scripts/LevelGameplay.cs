@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelGameplay : MonoBehaviour {
@@ -35,12 +34,11 @@ public class LevelGameplay : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        holeSkin.sprite = LevelBarMenu.Instance.skins[LevelBarMenu.Instance.indexOfActiveSkin];
+        holeSkin.sprite = LevelBarMenu.Instance.skins[DataProcessController.Instance.indexOfActiveSkin];
         CountObjects();
         UpdateLevelColors();
     }
 
-    // Update is called once per frame
     void CountObjects() {
         totalObjects = objectParent.childCount;
         objectsInScene = totalObjects;
@@ -48,22 +46,6 @@ public class LevelGameplay : MonoBehaviour {
 
     public void PlayWinFx() {
         winFx.Play();
-    }
-
-    // Разблокирование следующего уровня
-    public void LoadNextLevel() {
-        // Текущий уровень под 1 индексом, но по сути он 0, значит нужно вызвать для 1 (на самом деле 2 ур разблокирование)
-        if (SceneManager.GetActiveScene().buildIndex < LevelBarMenu.Instance.activatedLevels.Length) {
-            LevelBarMenu.Instance.activatedLevels[SceneManager.GetActiveScene().buildIndex] = true;
-            SaveSystem.SaveLevel(LevelBarMenu.Instance);
-        }
-        
-        SceneManager.LoadScene(0);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void RestartLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void UpdateLevelColors() {

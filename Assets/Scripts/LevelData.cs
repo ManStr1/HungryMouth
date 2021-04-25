@@ -7,11 +7,15 @@ public class LevelData {
 
     public bool[] activatedLevels;
     public bool[] activatedSkins;
+    public bool[] rewardedLevels;
     public int indexOfActiveSkin;
+    public int money;
 
-    public LevelData(LevelBarMenu levelBarMenu) {
-        activatedLevels = levelBarMenu.activatedLevels;
-        activatedSkins = levelBarMenu.activatedSkins;
-        indexOfActiveSkin = levelBarMenu.indexOfActiveSkin;
+    public LevelData(DataProcessController dataProcessController) {
+        activatedLevels = dataProcessController.activatedLevels;
+        activatedSkins = dataProcessController.activatedSkins;
+        indexOfActiveSkin = dataProcessController.indexOfActiveSkin;
+        money = dataProcessController.money;
+        rewardedLevels = dataProcessController.rewardedLevels;
     }
 }

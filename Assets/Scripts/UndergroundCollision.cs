@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class UndergroundCollision : MonoBehaviour {
@@ -23,7 +24,7 @@ public class UndergroundCollision : MonoBehaviour {
                 Game.isGameOver = true;
                 Camera.main.transform.DOShakePosition(1f, 0.2f, 20, 90f).
                     OnComplete(() => {
-                        LevelGameplay.Instance.RestartLevel();
+                        RestartLevel();
                     });
                 
             }
@@ -31,6 +32,13 @@ public class UndergroundCollision : MonoBehaviour {
     }
 
     void NextLevel() {
-        LevelGameplay.Instance.LoadNextLevel();
+        int reward = LevelGameplay.Instance.totalObjects * 15;
+        DataProcessController.Instance.UnlockNextLevel(SceneManager.GetActiveScene().buildIndex, reward);
+        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    void RestartLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

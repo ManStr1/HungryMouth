@@ -3,13 +3,13 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem {
-    public static void SaveLevel(LevelBarMenu levelBarMenu) {
+    public static void SaveLevel(DataProcessController dataProcessController) {
         Debug.Log("Level Saved");
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        LevelData data = new LevelData(levelBarMenu);
+        LevelData data = new LevelData(dataProcessController);
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -29,6 +29,13 @@ public static class SaveSystem {
 
             Debug.LogError("Save file not found in " + path);
             return null;
+        }
+    }
+
+    public static void ClearLevelData() {
+        string path = Application.persistentDataPath + "/player.fun";
+        if (File.Exists(path)) {
+            File.Delete(path);
         }
     }
 }
