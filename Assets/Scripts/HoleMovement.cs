@@ -30,6 +30,8 @@ public class HoleMovement : MonoBehaviour {
 
         mesh = meshFilter.mesh;
 
+        moveSpeed = DataProcessController.Instance.sense * 10;
+
         FindHoleVertices();
     }
 

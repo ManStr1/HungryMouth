@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DataProcessController : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class DataProcessController : MonoBehaviour {
     public int indexOfActiveSkin;
     public int numberOfLevels = 0;
     public int money = 0;
+    public float sense = 0;
     
 
     public static DataProcessController Instance;
@@ -19,28 +21,35 @@ public class DataProcessController : MonoBehaviour {
         if (Instance == null) {
             Instance = this;
         }
+    }
 
-        //SaveSystem.ClearLevelData();
+    public void Start() {
         
+    }
+
+    public void LoadDataOfWorld(int skinCount) {
         numberOfLevels = SceneManager.sceneCountInBuildSettings - 1;
 
-        if (SaveSystem.LoadLevel() == null) {
-            activatedLevels = new bool[numberOfLevels];
-            activatedSkins = new bool[LevelBarMenu.Instance.skins.Length];
-            rewardedLevels = new bool[numberOfLevels];
-            activatedSkins[0] = true;
-            activatedLevels[0] = true;
-            indexOfActiveSkin = 0;
-            money = 100;
-            SaveSystem.SaveLevel(this);
-        } else {
+        if (SaveSystem.SaveExist()) {
             LevelData data = SaveSystem.LoadLevel();
             activatedLevels = data.activatedLevels;
             activatedSkins = data.activatedSkins;
             indexOfActiveSkin = data.indexOfActiveSkin;
             money = data.money;
             rewardedLevels = data.rewardedLevels;
+            sense = data.sense;
+        } else {
+            activatedLevels = new bool[numberOfLevels];
+            activatedSkins = new bool[skinCount];
+            rewardedLevels = new bool[numberOfLevels];
+            activatedSkins[0] = true;
+            activatedLevels[0] = true;
+            indexOfActiveSkin = 0;
+            sense = 1f;
+            money = 100;
+            SaveSystem.SaveLevel(this);
         }
+        Sense.Instance.LoadSense();
     }
 
     public int LoadLastOpenLevel() {

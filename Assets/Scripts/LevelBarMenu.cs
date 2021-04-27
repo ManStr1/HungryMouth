@@ -27,6 +27,7 @@ public class LevelBarMenu : MonoBehaviour {
     }
 
     void Start() {
+        DataProcessController.Instance.LoadDataOfWorld(skins.Length);
         moneyText.text = DataProcessController.Instance.money + "";
         iconDimensions = levelActivatedButton.GetComponent<RectTransform>().rect;
         //levelHolder.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Ceil((float)numberOfLevels / 5) * iconDimensions.width);

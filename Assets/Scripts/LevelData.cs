@@ -10,6 +10,7 @@ public class LevelData {
     public bool[] rewardedLevels;
     public int indexOfActiveSkin;
     public int money;
+    public float sense;
 
     public LevelData(DataProcessController dataProcessController) {
         activatedLevels = dataProcessController.activatedLevels;
@@ -17,5 +18,6 @@ public class LevelData {
         indexOfActiveSkin = dataProcessController.indexOfActiveSkin;
         money = dataProcessController.money;
         rewardedLevels = dataProcessController.rewardedLevels;
+        sense = dataProcessController.sense;
     }
 }
