@@ -34,12 +34,23 @@ public class HoleMovement : MonoBehaviour {
     }
 
     void Update() {
+        #if UNITY_EDITOR
         Game.isMoving = Input.GetMouseButton(0);
 
         if (!Game.isGameOver && Game.isMoving) {
             MoveHole();
             UpdateHoleVerticesPosition();
         }
+        #else
+        Game.isMoving = Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved;
+
+                if (!Game.isGameOver && Game.isMoving) {
+                    MoveHole();
+                    UpdateHoleVerticesPosition();
+                }
+        #endif
+
+
     }
 
     void MoveHole() {
