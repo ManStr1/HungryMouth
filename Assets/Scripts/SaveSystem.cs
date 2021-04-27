@@ -15,6 +15,11 @@ public static class SaveSystem {
         stream.Close();
     }
 
+    public static bool SaveExist() {
+        string path = Application.persistentDataPath + "/player.fun";
+        return File.Exists(path);
+    }
+
     public static LevelData LoadLevel() {
         string path = Application.persistentDataPath + "/player.fun";
         if (File.Exists(path)) {

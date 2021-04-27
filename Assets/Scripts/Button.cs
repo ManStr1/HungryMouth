@@ -35,7 +35,10 @@ public class Button : MonoBehaviour {
         Application.Quit();
     }
 
-    public void SaveSoundButton() {
+    public void SaveButton() {
         SaveSystem.SaveSound(Music.Instance);
+        DataProcessController.Instance.sense = Sense.Instance.sense;
+        SaveSystem.SaveLevel(DataProcessController.Instance);
     }
+
 }

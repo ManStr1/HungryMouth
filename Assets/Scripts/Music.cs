@@ -30,8 +30,6 @@ public class Music : MonoBehaviour {
             volume = data.musicVolume;
             slider.value = volume;
         }
-
-
     }
 
     // Update is called once per frame
