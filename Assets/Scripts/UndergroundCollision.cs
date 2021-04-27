@@ -35,7 +35,12 @@ public class UndergroundCollision : MonoBehaviour {
         int reward = LevelGameplay.Instance.totalObjects * 15;
         DataProcessController.Instance.UnlockNextLevel(SceneManager.GetActiveScene().buildIndex, reward);
         //SceneManager.LoadScene(0);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.sceneCountInBuildSettings == SceneManager.GetActiveScene().buildIndex + 1) {
+            SceneManager.LoadScene(0);
+        } else {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        
     }
 
     void RestartLevel() {

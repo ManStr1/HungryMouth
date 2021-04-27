@@ -34,4 +34,8 @@ public class Button : MonoBehaviour {
     public void QuitGame() {
         Application.Quit();
     }
+
+    public void SaveSoundButton() {
+        SaveSystem.SaveSound(Music.Instance);
+    }
 }

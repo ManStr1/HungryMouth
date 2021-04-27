@@ -38,4 +38,33 @@ public static class SaveSystem {
             File.Delete(path);
         }
     }
+
+    public static void SaveSound(Music soundData) {
+        Debug.Log("Sound Saved");
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/sound.fun";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        SoundData data = new SoundData(soundData);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static SoundData LoadSound() {
+        string path = Application.persistentDataPath + "/sound.fun";
+        if (File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            SoundData data = formatter.Deserialize(stream) as SoundData;
+            stream.Close();
+
+            return data;
+        } else {
+
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
 }
