@@ -66,9 +66,9 @@ public class HoleMovement : MonoBehaviour {
         );
 
         targetPos = new Vector3(
-            Mathf.Clamp(touch.x, -moveLimits.x, moveLimits.x),
+            Mathf.Clamp(touch.x, -5.8f, 6.8f),
             touch.y,
-            Mathf.Clamp(touch.z, -moveLimits.y, moveLimits.y)
+            Mathf.Clamp(touch.z, -16.5f, 6.57f)
         );
 
         holeCenter.position = targetPos;

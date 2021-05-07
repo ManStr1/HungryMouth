@@ -28,7 +28,9 @@ public class DataProcessController : MonoBehaviour {
     }
 
     public void LoadDataOfWorld(int skinCount) {
+        
         numberOfLevels = SceneManager.sceneCountInBuildSettings - 1;
+        //SaveSystem.ClearLevelData();
 
         if (SaveSystem.SaveExist()) {
             LevelData data = SaveSystem.LoadLevel();
@@ -69,10 +71,10 @@ public class DataProcessController : MonoBehaviour {
             indexOfActiveSkin = skin;
             SaveSystem.SaveLevel(this);
         } else {
-            if (money >= 100) {
+            if (money >= 700) {
                 activatedSkins[skin] = true;
                 indexOfActiveSkin = skin;
-                money -= 100;
+                money -= 700;
                 SaveSystem.SaveLevel(this);
             }
         }

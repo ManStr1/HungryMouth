@@ -29,8 +29,10 @@ public class LevelBarMenu : MonoBehaviour {
     void Start() {
         DataProcessController.Instance.LoadDataOfWorld(skins.Length);
         moneyText.text = DataProcessController.Instance.money + "";
-        iconDimensions = levelActivatedButton.GetComponent<RectTransform>().rect;
-        //levelHolder.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Ceil((float)numberOfLevels / 5) * iconDimensions.width);
+
+        iconDimensions.width = levelHolder.GetComponent<RectTransform>().rect.width / 5;
+        iconDimensions.height = levelHolder.GetComponent<RectTransform>().rect.width / 5;
+
         SetUpGrid(levelHolder);
         SetUpGrid(skinHolder);
         
@@ -53,7 +55,7 @@ public class LevelBarMenu : MonoBehaviour {
             } else {
                 icon = Instantiate(levelActivatedButton);
             }
-            
+
             icon.transform.SetParent(thisCanvas.transform, false);
             icon.transform.SetParent(parentObject.transform);
             icon.name = "Level " + i;
@@ -69,8 +71,10 @@ public class LevelBarMenu : MonoBehaviour {
 
             if (DataProcessController.Instance.activatedSkins[i] == false) {
                 icon = Instantiate(skinNActivatedButton);
+                icon.GetComponentInChildren<Image>().color = Color.grey;
             } else {
                 icon = Instantiate(skinActivatedButton);
+                
             }
 
             icon.GetComponentInChildren<Image>().sprite = skins[i];
@@ -91,9 +95,9 @@ public class LevelBarMenu : MonoBehaviour {
         Button[] newSkins = skinHolder.GetComponentsInChildren<Button>();
         for (int i = 0; i < activatedSkins.Length; i++) {
 
-            if (activatedSkins[i] == false && DataProcessController.Instance.money >= 100) {
+            if (activatedSkins[i] == false && DataProcessController.Instance.money >= 700) {
                 newSkins[i].GetComponentInChildren<Image>().color = Color.yellow;
-                moneyText.text = (DataProcessController.Instance.money - 100) + "";
+                moneyText.text = (DataProcessController.Instance.money - 700) + "";
             } else
             if (activatedSkins[i]) {
                 if (i == indexOfActSkin) {
